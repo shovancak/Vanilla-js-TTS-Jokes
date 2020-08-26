@@ -21,10 +21,34 @@ body {
 }
 
 button {
+  color: white;
   margin-top: 26rem;
   margin-left: auto;
   margin-right: auto;
   width: 10rem;
+  cursor: pointer;
+  outline: none;
+  width: 200px;
+  height: 40px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 22px;
+  font-weight: 500;
+  background-color: #0a1b91;
+  border: none;
+  border-radius: 20px;
+}
+
+button:hover {
+  background-color: #f10011;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+button:disabled {
+  cursor: default;
+  filter: brightness(30%);
 }
 
 audio {
