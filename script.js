@@ -110,20 +110,20 @@ var VoiceRSS = {
   },
 };
 
-// const test = () => {
-//   VoiceRSS.speech({
-//     key: "d51be906a4854237b2e553865a31dd68",
-//     src: "Once upon the time, there was big dog.",
-//     hl: "en-us",
-//     v: "Mike",
-//     r: 0,
-//     c: "mp3",
-//     f: "44khz_16bit_stereo",
-//     ssml: false,
-//   });
-// };s
-
-// test();
+//Using joke as source for VoiceRRS API
+const tellMeJoke = (jokeText) => {
+  console.log("Tell me", jokeText);
+  VoiceRSS.speech({
+    key: "d51be906a4854237b2e553865a31dd68",
+    src: jokeText,
+    hl: "en-us",
+    v: "Mike",
+    r: 0,
+    c: "mp3",
+    f: "44khz_16bit_stereo",
+    ssml: false,
+  });
+};
 
 // Getting jokes from Joke API
 const getJoke = async () => {
@@ -139,7 +139,8 @@ const getJoke = async () => {
     } else {
       jokeText = `${jokeData.setup} ... ${jokeData.delivery}`;
     }
-    console.log(jokeText);
+    // function for telling jokes
+    tellMeJoke(jokeText);
   } catch (err) {
     console.log("Fetching Joke Failed, error:", err);
   }
