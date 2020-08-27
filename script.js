@@ -110,17 +110,39 @@ var VoiceRSS = {
   },
 };
 
-const test = () => {
-  VoiceRSS.speech({
-    key: "d51be906a4854237b2e553865a31dd68",
-    src: "Ahoj svet",
-    hl: "sk-sk",
-    v: "Beda",
-    r: 1,
-    c: "mp3",
-    f: "44khz_16bit_stereo",
-    ssml: false,
-  });
+// const test = () => {
+//   VoiceRSS.speech({
+//     key: "d51be906a4854237b2e553865a31dd68",
+//     src: "Once upon the time, there was big dog.",
+//     hl: "en-us",
+//     v: "Mike",
+//     r: 0,
+//     c: "mp3",
+//     f: "44khz_16bit_stereo",
+//     ssml: false,
+//   });
+// };s
+
+// test();
+
+// Getting jokes from Joke API
+const getJoke = async () => {
+  let jokeText = "";
+  const jokeApiUrl =
+    "https://sv443.net/jokeapi/v2/joke/Miscellaneous,Dark,Pun?blacklistFlags=nsfw,religious,political,racist,sexist";
+  try {
+    const response = await fetch(jokeApiUrl);
+    const jokeData = await response.json();
+
+    if (jokeData.joke) {
+      jokeText = jokeData.joke;
+    } else {
+      jokeText = `${jokeData.setup} ... ${jokeData.delivery}`;
+    }
+    console.log(jokeText);
+  } catch (err) {
+    console.log("Fetching Joke Failed, error:", err);
+  }
 };
 
-test();
+getJoke();
