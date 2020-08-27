@@ -110,9 +110,13 @@ var VoiceRSS = {
   },
 };
 
+//Disabling/enabling button
+const toggleButton = () => {
+  buttonElement.disabled = !buttonElement.disabled;
+};
+
 //Using joke as source for VoiceRRS API
 const tellMeJoke = (jokeText) => {
-  console.log("Tell me", jokeText);
   VoiceRSS.speech({
     key: "d51be906a4854237b2e553865a31dd68",
     src: jokeText,
@@ -141,9 +145,13 @@ const getJoke = async () => {
     }
     // function for telling jokes
     tellMeJoke(jokeText);
+    // disabling button
+    toggleButton();
   } catch (err) {
     console.log("Fetching Joke Failed, error:", err);
   }
 };
 
-getJoke();
+// Event listeners
+buttonElement.addEventListener("click", getJoke);
+audioElement.addEventListener("ended", toggleButton);
